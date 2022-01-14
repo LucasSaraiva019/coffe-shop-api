@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/LucasSaraiva019/coffe-shop-api/handlers"
+	"github.com/go-openapi/runtime/middleware"
 	"github.com/gorilla/mux"
 )
 
@@ -30,6 +31,15 @@ func main() {
 	postRouter := sm.Methods(http.MethodPost).Subrouter()
 	postRouter.HandleFunc("/products", product.AddProduct)
 	postRouter.Use(product.MiddlewareProductValidation)
+
+	deleteRoute := sm.Methods(http.MethodDelete).Subrouter()
+	deleteRoute.HandleFunc("/products/{id:[0-9]+}", product.DeleteProduct)
+
+	opts := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
+	sh := middleware.Redoc(opts, nil)
+
+	getRouter.Handle("/docs", sh)
+	getRouter.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
 
 	s := &http.Server{
 		Addr:         ":9090",
