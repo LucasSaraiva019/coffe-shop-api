@@ -6,8 +6,10 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"product-api/handlers"
 	"time"
+
+	"github.com/LucasSaraiva019/coffe-shop-api/handlers"
+	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -17,8 +19,17 @@ func main() {
 	product := handlers.NewProducts(l)
 
 	// Create new Server mux and Register the handlers
-	sm := http.NewServeMux()
-	sm.Handle("/", product)
+	sm := mux.NewRouter()
+	getRouter := sm.Methods(http.MethodGet).Subrouter()
+	getRouter.HandleFunc("/products", product.GetProducts)
+
+	putRouter := sm.Methods(http.MethodPut).Subrouter()
+	putRouter.HandleFunc("/products/{id:[0-9]+}", product.UpdateProducts)
+	putRouter.Use(product.MiddlewareProductValidation)
+
+	postRouter := sm.Methods(http.MethodPost).Subrouter()
+	postRouter.HandleFunc("/products", product.AddProduct)
+	postRouter.Use(product.MiddlewareProductValidation)
 
 	s := &http.Server{
 		Addr:         ":9090",
