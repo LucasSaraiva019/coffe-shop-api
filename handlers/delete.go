@@ -19,7 +19,7 @@ func (p *Products) Delete(rw http.ResponseWriter, r *http.Request) {
 	id := getProductID(r)
 
 	p.l.Println("[DEBUG] deleting record id", id)
-
+	rw.Header().Add("Content-Type", "application/json")
 	err := data.DeleteProduct(id)
 	if err == data.ErrProductNotFound {
 		p.l.Println("[ERROR] deleting record id does not exist")
