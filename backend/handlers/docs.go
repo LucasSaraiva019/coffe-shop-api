@@ -15,7 +15,7 @@
 // swagger:meta
 package handlers
 
-import "github.com/LucasSaraiva019/coffe-shop-api/data"
+import "github.com/LucasSaraiva019/coffe-shop-api/backend/data"
 
 //
 // NOTE: Types defined here are purely for documentation purposes

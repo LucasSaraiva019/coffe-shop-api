@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/LucasSaraiva019/coffe-shop-api/client/client"
-	"github.com/LucasSaraiva019/coffe-shop-api/client/client/products"
+	"github.com/LucasSaraiva019/coffe-shop-api/backend/client/client"
+	"github.com/LucasSaraiva019/coffe-shop-api/backend/client/client/products"
 )
 
 func TestOurClient(t *testing.T) {

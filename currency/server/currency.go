@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 
-	protos "github.com/LucasSaraiva019/currency/protos/currency"
+	protos "github.com/LucasSaraiva019/coffe-shop-api/currency/protos/currency"
 	"github.com/hashicorp/go-hclog"
 )
 

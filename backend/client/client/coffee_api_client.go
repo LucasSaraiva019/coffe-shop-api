@@ -10,10 +10,10 @@ import (
 	httptransport "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/LucasSaraiva019/coffe-shop-api/client/client/products"
+	"github.com/LucasSaraiva019/coffe-shop-api/backend/client/client/products"
 )
 
-// Default product API HTTP client.
+// Default coffee API HTTP client.
 var Default = NewHTTPClient(nil)
 
 const (
@@ -28,14 +28,14 @@ const (
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
 var DefaultSchemes = []string{"http"}
 
-// NewHTTPClient creates a new product API HTTP client.
-func NewHTTPClient(formats strfmt.Registry) *ProductAPI {
+// NewHTTPClient creates a new coffee API HTTP client.
+func NewHTTPClient(formats strfmt.Registry) *CoffeeAPI {
 	return NewHTTPClientWithConfig(formats, nil)
 }
 
-// NewHTTPClientWithConfig creates a new product API HTTP client,
+// NewHTTPClientWithConfig creates a new coffee API HTTP client,
 // using a customizable transport config.
-func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *ProductAPI {
+func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *CoffeeAPI {
 	// ensure nullable parameters have default
 	if cfg == nil {
 		cfg = DefaultTransportConfig()
@@ -46,14 +46,14 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Pro
 	return New(transport, formats)
 }
 
-// New creates a new product API client
-func New(transport runtime.ClientTransport, formats strfmt.Registry) *ProductAPI {
+// New creates a new coffee API client
+func New(transport runtime.ClientTransport, formats strfmt.Registry) *CoffeeAPI {
 	// ensure nullable parameters have default
 	if formats == nil {
 		formats = strfmt.Default
 	}
 
-	cli := new(ProductAPI)
+	cli := new(CoffeeAPI)
 	cli.Transport = transport
 	cli.Products = products.New(transport, formats)
 	return cli
@@ -98,15 +98,15 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 	return cfg
 }
 
-// ProductAPI is a client for product API
-type ProductAPI struct {
+// CoffeeAPI is a client for coffee API
+type CoffeeAPI struct {
 	Products products.ClientService
 
 	Transport runtime.ClientTransport
 }
 
 // SetTransport changes the transport on the client and all its subresources
-func (c *ProductAPI) SetTransport(transport runtime.ClientTransport) {
+func (c *CoffeeAPI) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 	c.Products.SetTransport(transport)
 }

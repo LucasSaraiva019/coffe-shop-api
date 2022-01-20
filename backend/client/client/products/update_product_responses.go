@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/LucasSaraiva019/coffe-shop-api/client/models"
+	"github.com/LucasSaraiva019/coffe-shop-api/backend/client/models"
 )
 
 // UpdateProductReader is a Reader for the UpdateProduct structure.

@@ -1,4 +1,4 @@
-module github.com/LucasSaraiva019/currency
+module github.com/LucasSaraiva019/coffe-shop-api/currency
 
 go 1.17
 

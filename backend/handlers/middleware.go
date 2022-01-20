@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/LucasSaraiva019/coffe-shop-api/data"
+	"github.com/LucasSaraiva019/coffe-shop-api/backend/data"
 )
 
 // MiddlewareValidateProduct validates the product in the request and calls next if ok

@@ -1,9 +1,11 @@
 package handlers
 
 import (
+	"context"
 	"net/http"
 
-	"github.com/LucasSaraiva019/coffe-shop-api/data"
+	"github.com/LucasSaraiva019/coffe-shop-api/backend/data"
+	protos "github.com/LucasSaraiva019/coffe-shop-api/currency/protos/currency"
 )
 
 // swagger:route GET /products products listProducts
@@ -54,6 +56,22 @@ func (p *Products) ListSingle(rw http.ResponseWriter, r *http.Request) {
 		data.ToJSON(&GenericError{Message: err.Error()}, rw)
 		return
 	}
+
+	// GET exchange rate
+	rr := &protos.RateRequest{
+		Base:        protos.Currencies(protos.Currencies_value["EUR"]),
+		Destination: protos.Currencies(protos.Currencies_value["GBP"]),
+	}
+
+	resp, err := p.cc.GetRate(context.Background(), rr)
+	if err != nil {
+		p.l.Println("[Error] error getting new rate", err)
+		data.ToJSON(&GenericError{Message: err.Error()}, rw)
+		return
+	}
+	p.l.Printf("Resp %#v", resp)
+
+	prod.Price = prod.Price * resp.Rate
 
 	err = data.ToJSON(prod, rw)
 	if err != nil {

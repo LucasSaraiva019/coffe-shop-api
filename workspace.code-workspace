@@ -1,0 +1,18 @@
+
+{
+	"folders": [
+    {
+      "path": "frontend"
+    },
+    {
+      "path": "backend"
+    },
+    {
+      "path": "currency"
+    }
+  ],
+	"remoteAuthority": "wsl+Ubuntu",
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

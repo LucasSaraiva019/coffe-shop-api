@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/LucasSaraiva019/coffe-shop-api/data"
+	"github.com/LucasSaraiva019/coffe-shop-api/backend/data"
 )
 
 // swagger:route DELETE /products/{id} products deleteProduct
