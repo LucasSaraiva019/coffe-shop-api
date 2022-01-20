@@ -1,4 +1,4 @@
-module github.com/LucasSaraiva019/currency
+module github.com/LucasSaraiva019/coffe-shop-api/currency
 
 go 1.17
 
@@ -10,7 +10,7 @@ require (
 
 require (
 	github.com/fatih/color v1.7.0 // indirect
-	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/golang/protobuf v1.5.0 // indirect
 	github.com/mattn/go-colorable v0.1.4 // indirect
 	github.com/mattn/go-isatty v0.0.10 // indirect
 	golang.org/x/net v0.0.0-20200822124328-c89045814202 // indirect

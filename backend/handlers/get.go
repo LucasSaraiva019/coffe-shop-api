@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
+	protos "github.com/LucasSaraiva019/coffe-shop-api/currency/protos/currency"
 	"github.com/LucasSaraiva019/coffe-shop-api/data"
-	protos "github.com/LucasSaraiva019/currency/protos/currency"
 )
 
 // swagger:route GET /products products listProducts

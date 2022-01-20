@@ -8,9 +8,9 @@ import (
 	"os/signal"
 	"time"
 
+	protos "github.com/LucasSaraiva019/coffe-shop-api/currency/protos/currency"
 	"github.com/LucasSaraiva019/coffe-shop-api/data"
 	"github.com/LucasSaraiva019/coffe-shop-api/handlers"
-	protos "github.com/LucasSaraiva019/currency/protos/currency"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/golang/protobuf/protoc-gen-go/grpc"
 	gohandlers "github.com/gorilla/handlers"
