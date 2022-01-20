@@ -1,10 +1,8 @@
 package handlers
 
 import (
-	"context"
 	"net/http"
 
-	protos "github.com/LucasSaraiva019/coffe-shop-api/currency/protos/currency"
 	"github.com/LucasSaraiva019/coffe-shop-api/data"
 )
 
@@ -56,12 +54,6 @@ func (p *Products) ListSingle(rw http.ResponseWriter, r *http.Request) {
 		data.ToJSON(&GenericError{Message: err.Error()}, rw)
 		return
 	}
-
-	// get exchange rate
-	rr := protos.RateRequest{
-		Base: protos.Currencies(protos.Currencies_value["EUR"]),
-	}
-	p.cc.GetRate(context.Background())
 
 	err = data.ToJSON(prod, rw)
 	if err != nil {

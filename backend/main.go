@@ -8,15 +8,12 @@ import (
 	"os/signal"
 	"time"
 
-	protos "github.com/LucasSaraiva019/coffe-shop-api/currency/protos/currency"
 	"github.com/LucasSaraiva019/coffe-shop-api/data"
 	"github.com/LucasSaraiva019/coffe-shop-api/handlers"
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/golang/protobuf/protoc-gen-go/grpc"
 	gohandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/nicholasjackson/env"
-	"google.golang.org/grpc"
 )
 
 var bindAddress = env.String("BIND_ADDRESS", false, ":9090", "Bind address for the server")
@@ -31,17 +28,8 @@ func main() {
 	// create a new serve mux and register the handlers
 	sm := mux.NewRouter()
 
-	conn, err := grpc.Dial("localhost:9092")
-	if err != nil {
-		panic(err)
-	}
-
-	defer conn.Close()
-
-	cc := protos.NewCurrencyClient(conn)
-
 	// create the handlers
-	ph := handlers.NewProducts(l, v, cc)
+	ph := handlers.NewProducts(l, v)
 
 	// handlers for API
 	getR := sm.Methods(http.MethodGet).Subrouter()
